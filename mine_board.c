@@ -10,7 +10,7 @@
 // void Seed(int argc, int seed);
 void ReadArgs(int argc, char *argv[], int *num_rows, int *num_cols, int *num_mines, int *seed){ 
 	// GOOD
-	if (argc <= 4){
+	if (argc < 4){
 		printf("Not enough arguments. Usage: ./mine_sweeper.out num_rows num_cols num_mines [seed])\n");
 		exit(0);
 	}
