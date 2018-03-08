@@ -10,7 +10,7 @@
 // void Seed(int argc, int seed);
 void ReadArgs(int argc, char *argv[], int *num_rows, int *num_cols, int *num_mines, int *seed){ 
 	// GOOD
-	if (argc < 4){
+	if (argc <= 4){
 		printf("Not enough arguments. Usage: ./mine_sweeper.out num_rows num_cols num_mines [seed])\n");
 		exit(0);
 	}
@@ -133,31 +133,6 @@ void LabelMinesNearby(Board *board){
 				TileDownRight(board, i, j);
 				TileUpLeft(board, i, j);
 				TileDownLeft(board, i, j);
-				// // add to mines_near if tile to right is a mine:
-				// if (board->tiles[i][j + 1].is_mine == true){
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i][j - 1].is_mine == true){ // tile to left
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i + 1][j].is_mine == true){ // tile below
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i - 1][j].is_mine == true){ // tile above
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i + 1][j + 1].is_mine == true){ // tile diagonal down-right
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i + 1][j - 1].is_mine == true){ // tile diagonal down-left
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i - 1][j + 1].is_mine == true){ // tile diagonal up-right
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
-				// if (board->tiles[i - 1][j - 1].is_mine == true){ //tile diagonal up-left
-				// 	(board->tiles[i][j].mines_near)++;
-				// }
 			}
 		}
 	}
@@ -168,22 +143,6 @@ void TopLeftMines(Board *board, int i, int j){
 	TileRight(board, i, j);
 	TileBelow(board, i, j);
 	TileDownRight(board, i, j);
-// 	if (board->num_cols > 1){
-// 		if (board->tiles[i][j + 1].is_mine == true){
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if (board->num_rows > 1){
-// 		if (board->tiles[i + 1][j].is_mine == true){ // tile below
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if ((board->num_cols > 1) && (board->num_rows > 1)){
-// 		if (board->tiles[i + 1][j + 1].is_mine == true){ // tile diagonal down-right
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// }
 }
 
 void BottomLeftMines(Board *board, int i, int j){
@@ -191,41 +150,18 @@ void BottomLeftMines(Board *board, int i, int j){
 	TileRight(board, i, j);
 	TileUpRight(board, i, j);
 
-// 	if (board->num_rows > 1){
-// 		if (board->tiles[i - 1][j].is_mine == true){ // tile above
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if (board->num_cols > 1){
-// 		if (board->tiles[i][j + 1].is_mine == true){ // tile right
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if ((board->num_rows > 1) && (board->num_cols > 1)){
-// 		if (board->tiles[i - 1][j + 1].is_mine == true){ // tile diagonal up-right
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// }
 }
 
 void TopRightMines(Board *board, int i, int j){
-// 	if (board->num_cols > 1){
-// 		if (board->tiles[i][j - 1].is_mine == true){ // tile to left
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if (board->num_rows > 1){
-// 		if (board->tiles[i + 1][j].is_mine == true){ // tile below
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// 	if ((board->num_rows > 1) && (board->num_cols > 1)){
-// 		if (board->tiles[i + 1][j - 1].is_mine == true){ // tile diagonal down-left
-// 			(board->tiles[i][j].mines_near)++;
-// 		}
-// 	}
-// }
+	if (board->num_cols > 1){
+		TileLeft(board, i, j);
+	}
+	if (board->num_rows > 1){
+		TileBelow(board, i, j);
+	}
+	if ((board->num_rows > 1) && (board->num_cols > 1)){
+		TileDownLeft(board, i, j);
+	}
 }
 
 
@@ -403,4 +339,3 @@ void DestroyBoard(Board *board){
 	free(board->tiles);
 	board->tiles = NULL;
 }
-
